@@ -20,9 +20,8 @@ df = pd.read_csv(location)
 
 # In[7]:
 
-
+#Make a heatmap to find which variables have most correlation
 corr = df.corr()
-
 sns.heatmap(corr, vmin=-1, annot=True)
 
 
@@ -37,7 +36,7 @@ sns.lmplot(x='carat', y='price', data=df,
 
 # In[49]:
 
-
+#Make data frames for each cut with all of the respective prices
 price_cut_df = df[["cut","price"]]
 
 ideal_prices_df = price_cut_df[price_cut_df.cut == "Ideal"]
@@ -53,6 +52,7 @@ fair_prices_df = price_cut_df[price_cut_df.cut == "Fair"]
 
 # In[50]:
 
+#Make data frame for average prices each cut
 
 avg_ideal = ideal_prices_df.mean()
 avg_premium = premium_prices_df.mean()
@@ -78,7 +78,8 @@ sns.barplot(x='Cut', y = "Avg Price",
 
 # In[52]:
 
-
+#Make a data frame for all of the ideal cut diamonds, and then another dataframe
+#where the only other category kept is depth
 ideal_df = df[df.cut == "Ideal"]
 ideal_depth_df = ideal_df[["cut", "depth"]]
 
@@ -86,7 +87,8 @@ ideal_depth_df = ideal_df[["cut", "depth"]]
 # In[56]:
 
 
-# sns.boxplot(data=ideal_depth_df)
+#Make a violin plot to look at the distribution of the depth
+#values of the ideal cut diamonds
 sns.violinplot(x='cut', y='depth', data=ideal_depth_df)
 
 
